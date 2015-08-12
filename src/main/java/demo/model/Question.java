@@ -14,7 +14,7 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String title;
-	private String text;
+	private String question;
 	public long getId() {
 		return id;
 	}
@@ -28,10 +28,10 @@ public class Question {
 		this.title = title;
 	}
 	public String getText() {
-		return text;
+		return question;
 	}
 	public void setText(String text) {
-		this.text = text;
+		this.question = text;
 	}
 	
 	@Override
