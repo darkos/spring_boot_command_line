@@ -1,46 +1,37 @@
 package demo.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table
-public class Answer {
+public class Comment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String answer;
-	
+	private String text;
+
 	public long getId() {
 		return id;
 	}
-	
-	public String getAnswer() {
-		return answer;
-	}
-	
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
-	
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	
-	@Override
-	public String toString() {
-		return "Answer [id=" + id + ", title=" + answer.substring(0,50) + "]";
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 	
 	@JoinColumn(name="question_id")
@@ -55,9 +46,15 @@ public class Answer {
 		this.question = question;
 	}
 	
-	@OneToMany(mappedBy="answer", cascade=CascadeType.REMOVE)
-	private List<Comment> comments;
+	@JoinColumn(name="answer_id")
+	@ManyToOne
+	private Answer answer;
 	
+	public Answer getAnswer() {
+		return answer;
+	}
 	
-	
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
+	}
 }

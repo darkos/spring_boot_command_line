@@ -1,9 +1,13 @@
 package demo.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -38,5 +42,11 @@ public class Question {
 	public String toString() {
 		return "Question [id=" + id + ", title=" + title + "]";
 	}
+	
+	@OneToMany(mappedBy="question", cascade=CascadeType.REMOVE)
+	private List<Answer> answers;
+	
+	@OneToMany(mappedBy="question", cascade=CascadeType.REMOVE)
+	private List<Comment> comments;
 
 }
